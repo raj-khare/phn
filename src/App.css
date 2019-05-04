@@ -57,6 +57,7 @@ header a {
   padding-top: 0.5rem;
   overflow-y: scroll;
   height: 30rem;
+  -webkit-overflow-scrolling: touch;
 }
 
 ::-webkit-scrollbar {
