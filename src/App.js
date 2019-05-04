@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Widget from "./containers/Widget/Widget";
+import { Link } from "react-router-dom";
+import { Route, BrowserRouter as Router } from "react-router-dom";
+import Home from "./containers/Home/Home";
+import Settings from "./containers/Settings/Settings";
+export default class App extends React.Component {
+  state = {
+    topics: ["Paul Graham", "python"]
+  };
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  updateTopics = string => {
+    this.setState({ topics: string.split("\n") });
+  };
+
+  render() {
+    const widgets = [];
+    this.state.topics.forEach((t, i) => {
+      widgets.push(<Widget topic={t} key={i} />);
+    });
+
+    return (
+      <div className="App">
+        <Router>
+          <header>
+            <strong>Personalized Hacker News | </strong>
+            <Link to="/settings">Settings</Link>
+          </header>
+          <Route
+            exact
+            path="/"
+            render={props => <Home {...props} topics={this.state.topics} />}
+          />
+          <Route
+            exact
+            path="/settings"
+            render={props => (
+              <Settings {...props} updateTopics={this.updateTopics} />
+            )}
+          />
+        </Router>
+      </div>
+    );
+  }
 }
-
-export default App;

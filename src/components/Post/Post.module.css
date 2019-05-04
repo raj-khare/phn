@@ -1,0 +1,40 @@
+.post {
+  margin-bottom: 0.5rem;
+  display: flex;
+}
+.number {
+  color: #828282;
+}
+.title {
+  display: inline;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.url {
+  color: #828282;
+  font-size: 0.7rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.url:hover {
+  text-decoration: underline;
+}
+
+.metadata {
+  display: block;
+  font-size: 0.55rem;
+  color: #828282;
+}
+
+.metadata a {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.metadata a:hover {
+  text-decoration: underline;
+}
