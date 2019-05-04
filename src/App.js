@@ -7,11 +7,11 @@ import Home from "./containers/Home/Home";
 import Settings from "./containers/Settings/Settings";
 export default class App extends React.Component {
   state = {
-    topics: ["Paul Graham", "python"]
+    topics: ["Javascript", "Python", "React"]
   };
 
   updateTopics = string => {
-    this.setState({ topics: string.split("\n") });
+    this.setState({ topics: string.split(",") });
   };
 
   render() {
@@ -24,7 +24,7 @@ export default class App extends React.Component {
       <div className="App">
         <Router>
           <header>
-            <strong>Personalized Hacker News | </strong>
+            <strong>Personalized Hacker News &nbsp;&nbsp;</strong>
             <Link to="/settings">Settings</Link>
           </header>
           <Route
@@ -36,7 +36,11 @@ export default class App extends React.Component {
             exact
             path="/settings"
             render={props => (
-              <Settings {...props} updateTopics={this.updateTopics} />
+              <Settings
+                {...props}
+                updateTopics={this.updateTopics}
+                topics={this.state.topics}
+              />
             )}
           />
         </Router>

@@ -1,10 +1,19 @@
 .post {
   margin-bottom: 0.5rem;
   display: flex;
+  justify-content: flex-start;
 }
 .number {
   color: #828282;
+  width: 2rem;
+  text-align: right;
+  margin-right: 0.3rem;
 }
+
+.content {
+  flex: 1;
+}
+
 .title {
   display: inline;
   cursor: pointer;
@@ -25,6 +34,7 @@
 
 .metadata {
   display: block;
+  line-height: 1.5;
   font-size: 0.55rem;
   color: #828282;
 }

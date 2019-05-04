@@ -45,7 +45,7 @@ function Post({ post, n }) {
   return (
     <div className={styles.post}>
       <span className={styles.number}>{n + 1}. </span>
-      <span>
+      <span className={styles.content}>
         <a
           className={styles.title}
           href={url}
@@ -53,7 +53,7 @@ function Post({ post, n }) {
           rel="noopener noreferrer"
         >
           {title}
-        </a>
+        </a>{" "}
         <a
           className={styles.url}
           href={url}
@@ -65,7 +65,7 @@ function Post({ post, n }) {
             : `(${slug.hostname})`}
         </a>
         <span className={styles.metadata}>
-          {points} by{" "}
+          {points} points by{" "}
           <a
             href={`https://news.ycombinator.com/user?id=${author}`}
             target="_blank"

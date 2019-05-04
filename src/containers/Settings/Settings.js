@@ -1,10 +1,14 @@
 import React from "react";
 import styles from "./Settings.module.css";
+import { Link } from "react-router-dom";
 
 export default class Settings extends React.Component {
-  state = {
-    topics: ""
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      topics: props.topics
+    };
+  }
 
   handleChange = e => {
     this.setState({ topics: e.target.value }, () => {
@@ -14,13 +18,16 @@ export default class Settings extends React.Component {
 
   render() {
     return (
-      <div>
-        <span>Enter topics of your choice: (Separated by newline)</span>
+      <div className={styles.container}>
+        <span>Enter topics of your choice: (Separated by comma)</span>
         <textarea
-          className={styles.input}
+          className={styles.textarea}
           onChange={this.handleChange}
           value={this.state.topics}
         />
+        <Link to="/" className={styles.btn}>
+          Back
+        </Link>
       </div>
     );
   }
