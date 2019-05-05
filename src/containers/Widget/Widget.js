@@ -7,11 +7,12 @@ export default class Widget extends React.Component {
   };
 
   async componentDidMount() {
-    const response = await fetch(
-      `https://hn.algolia.com/api/v1/search_by_date?tags=story&query=${
-        this.props.topic
-      }`
-    );
+    const url = this.props.topic
+      ? `http://hn.algolia.com/api/v1/search_by_date?query=${
+          this.props.topic
+        }&tags=story`
+      : "http://hn.algolia.com/api/v1/search?tags=front_page";
+    const response = await fetch(url);
     const data = await response.json();
     console.log(data);
     this.setState({ content: data.hits });
@@ -24,7 +25,9 @@ export default class Widget extends React.Component {
     });
     return (
       <div className="widget">
-        <div className="topic">{this.props.topic}</div>
+        <div className="topic">
+          {this.props.topic ? this.props.topic : "Home"}
+        </div>
         <div className="content">{posts.length ? posts : "Loading..."}</div>
       </div>
     );

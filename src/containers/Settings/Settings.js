@@ -12,7 +12,11 @@ export default class Settings extends React.Component {
 
   handleChange = e => {
     this.setState({ topics: e.target.value }, () => {
-      this.props.updateTopics(this.state.topics);
+      if (this.state.topics === "") {
+        this.props.updateTopics([]);
+        return;
+      }
+      this.props.updateTopics(this.state.topics.split(","));
     });
   };
 
