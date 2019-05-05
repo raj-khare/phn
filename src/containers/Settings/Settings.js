@@ -3,7 +3,7 @@ import styles from "./Settings.module.css";
 
 export default class Settings extends React.Component {
   state = {
-    topics: ""
+    topics: this.props.topics.join(",")
   };
 
   clean = s => {

@@ -2,19 +2,36 @@ import React from "react";
 import "./App.css";
 import Home from "./containers/Home/Home";
 import Settings from "./containers/Settings/Settings";
-export default class App extends React.Component {
-  state = {
-    topics: [],
-    settingsVisible: true
-  };
+import { withCookies } from "react-cookie";
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    let topics = this.props.cookies.get("phn-topics") || [];
+
+    this.state = {
+      topics: topics,
+      settingsVisible: !Boolean(topics.length)
+    };
+  }
 
   updateTopics = topics => {
-    if (!topics.length) this.setState({ topics: [] });
-    else this.setState({ topics: topics.split(",") });
+    if (!topics.length) this.setState({ topics: [] }, this.setCookies);
+    else this.setState({ topics: topics.split(",") }, this.setCookies);
   };
 
   updateSettingsVisibility = b => {
     this.setState({ settingsVisible: b });
+  };
+
+  setCookies = () => {
+    let options = {
+      path: "/",
+      maxAge: 864000,
+      domain: "phn.netlify.com",
+      secure: true
+    };
+    this.props.cookies.set("phn-topics", this.state.topics, options);
   };
 
   render() {
@@ -40,3 +57,5 @@ export default class App extends React.Component {
     );
   }
 }
+
+export default withCookies(App);
