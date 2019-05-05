@@ -35,6 +35,7 @@ export default class Settings extends React.Component {
     return (
       <div className={styles.container}>
         <span>Enter topics of your choice: (Separated by comma)</span>
+        <span>Python, JavaScript, Security, Blockchain etc.</span>
         <textarea
           className={styles.textarea}
           onChange={this.handleChange}
