@@ -8,10 +8,10 @@ export default class Widget extends React.Component {
 
   async componentDidMount() {
     const url = this.props.topic
-      ? `http://hn.algolia.com/api/v1/search_by_date?query=${
+      ? `https://hn.algolia.com/api/v1/search_by_date?query=${
           this.props.topic
         }&tags=story`
-      : "http://hn.algolia.com/api/v1/search?tags=front_page";
+      : "https://hn.algolia.com/api/v1/search?tags=front_page";
     const response = await fetch(url);
     const data = await response.json();
     console.log(data);
