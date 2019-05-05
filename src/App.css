@@ -45,3 +45,23 @@ header strong {
 /* ::-webkit-scrollbar-thumb {
   background: #ff0000;
 } */
+
+.btn {
+  display: inline-block;
+  background-color: transparent;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0;
+  outline: none;
+}
+
+.btn-white {
+  color: #fff;
+}
+
+.btn:hover {
+  text-decoration: underline;
+}

@@ -1,24 +1,28 @@
-.container span {
+.modal {
+  background: #000;
+  color: #fff;
+  width: 50rem;
+  height: 20rem;
+  position: absolute;
+  top: 10rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 3rem;
+}
+.modal span {
   display: block;
   margin-top: 0.5rem;
 }
 
-.textarea {
+.input {
   display: block;
   margin-top: 1rem;
-  width: 15rem;
-  height: 4rem;
+  padding: 1rem;
+  background-color: transparent;
+  color: inherit;
   font-family: inherit;
   font-size: 16px;
-}
-
-.btn {
-  display: inline-block;
-  margin-top: 1rem;
-  text-decoration: none;
-  color: inherit;
-}
-
-.btn:hover {
-  text-decoration: underline;
+  border: 1px solid #fff;
+  outline: none;
+  margin-bottom: 2rem;
 }

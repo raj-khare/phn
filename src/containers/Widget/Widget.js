@@ -4,10 +4,12 @@ import styles from "./Widget.module.css";
 
 export default class Widget extends React.Component {
   state = {
-    content: []
+    content: [],
+    isLoading: true
   };
 
-  async componentDidMount() {
+  fetchData = async () => {
+    this.setState({ isLoading: true });
     const url = this.props.topic
       ? `https://hn.algolia.com/api/v1/search_by_date?query=${
           this.props.topic
@@ -15,7 +17,17 @@ export default class Widget extends React.Component {
       : "https://hn.algolia.com/api/v1/search?tags=front_page";
     const response = await fetch(url);
     const data = await response.json();
-    this.setState({ content: data.hits });
+    this.setState({ content: data.hits, isLoading: false });
+  };
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.topic !== prevProps.topic) {
+      this.fetchData();
+    }
   }
 
   render() {
@@ -29,7 +41,7 @@ export default class Widget extends React.Component {
           {this.props.topic ? this.props.topic : "Home"}
         </div>
         <div className={styles.content}>
-          {posts.length ? posts : "Loading..."}
+          {!this.state.isLoading ? posts : "Loading..."}
         </div>
       </div>
     );

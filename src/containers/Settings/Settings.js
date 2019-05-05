@@ -1,50 +1,48 @@
 import React from "react";
 import styles from "./Settings.module.css";
-import { Link } from "react-router-dom";
 
 export default class Settings extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      topics: props.topics
-    };
-  }
+  state = {
+    topics: ""
+  };
+
+  clean = s => {
+    s = s.trim();
+    if (s.charAt(0) === "," && s.charAt(s.length - 1) === ",")
+      return s.slice(1, s.length - 1);
+    if (s.charAt(0) === ",") return s.slice(1);
+    if (s.charAt(s.length - 1) === ",") return s.slice(0, s.length - 1);
+    return s;
+  };
 
   handleChange = e => {
-    this.setState({ topics: e.target.value }, () => {
-      // let topics = this.state.topics;
-      // if (topics.charAt(0) === ",") {
-      //   topics = topics.slice(1);
-      // }
-      // if (topics.charAt(topics.length - 1) === ",") {
-      //   topics = topics.slice(0, topics.length - 1);
-      // }
-      // if (topics === "") {
-      //   this.props.updateTopics([]);
-      //   return;
-      // }
-      // const tArray = topics.split(", ");
-      // tArray.forEach((el, i) => {
-      //   tArray[i] = el.trim();
-      // });
-      this.props.updateTopics(this.state.topics);
-    });
+    this.setState({ topics: e.target.value });
+  };
+
+  handleSubmit = () => {
+    let cleanedTopics = this.clean(this.state.topics);
+    this.setState({ topics: cleanedTopics });
+    this.props.updateTopics(cleanedTopics);
+    this.props.updateSettingsVisibility(false);
   };
 
   render() {
-    return (
-      <div className={styles.container}>
-        <span>Enter topics of your choice: (Separated by comma)</span>
-        <span>Python, JavaScript, Security, Blockchain etc.</span>
-        <textarea
-          className={styles.textarea}
-          onChange={this.handleChange}
-          value={this.state.topics}
-        />
-        <Link to="/" className={styles.btn}>
-          Back
-        </Link>
-      </div>
-    );
+    if (this.props.isVisible) {
+      return (
+        <div className={styles.modal}>
+          <span>Enter topics of your choice: (Separated by comma)</span>
+          <span>Python, JavaScript, Security, Blockchain etc.</span>
+          <input
+            type="text"
+            className={styles.input}
+            onChange={this.handleChange}
+            value={this.state.topics}
+          />
+          <button onClick={this.handleSubmit} className="btn btn-white">
+            Done
+          </button>
+        </div>
+      );
+    } else return null;
   }
 }

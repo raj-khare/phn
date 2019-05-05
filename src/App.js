@@ -1,47 +1,41 @@
 import React from "react";
 import "./App.css";
-import { Link } from "react-router-dom";
-import { Route, BrowserRouter as Router } from "react-router-dom";
 import Home from "./containers/Home/Home";
 import Settings from "./containers/Settings/Settings";
 export default class App extends React.Component {
   state = {
-    topics: []
+    topics: [],
+    settingsVisible: true
   };
 
   updateTopics = topics => {
-    if (topics === "") {
-      this.setState({ topics: [] });
-      return;
-    }
-    this.setState({ topics: topics.split(",") });
+    if (!topics.length) this.setState({ topics: [] });
+    else this.setState({ topics: topics.split(",") });
+  };
+
+  updateSettingsVisibility = b => {
+    this.setState({ settingsVisible: b });
   };
 
   render() {
     return (
       <div className="App">
-        <Router>
-          <header>
-            <strong>Personalized Hacker News</strong>
-            <Link to="/settings">settings</Link>
-          </header>
-          <Route
-            exact
-            path="/"
-            render={props => <Home {...props} topics={this.state.topics} />}
-          />
-          <Route
-            exact
-            path="/settings"
-            render={props => (
-              <Settings
-                {...props}
-                updateTopics={this.updateTopics}
-                topics={this.state.topics}
-              />
-            )}
-          />
-        </Router>
+        <header>
+          <strong>Personalized Hacker News</strong>
+          <button
+            onClick={() => this.updateSettingsVisibility(true)}
+            className="btn"
+          >
+            settings
+          </button>
+        </header>
+        <Settings
+          isVisible={this.state.settingsVisible}
+          updateTopics={this.updateTopics}
+          topics={this.state.topics}
+          updateSettingsVisibility={this.updateSettingsVisibility}
+        />
+        <Home topics={this.state.topics} />
       </div>
     );
   }
