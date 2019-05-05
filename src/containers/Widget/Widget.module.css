@@ -13,6 +13,7 @@
   font-weight: bold;
   padding: 0.3rem;
   text-transform: capitalize;
+  border: 1px solid rgb(246, 246, 239);
 }
 
 .content {

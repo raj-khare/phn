@@ -15,7 +15,6 @@ export default class Widget extends React.Component {
       : "https://hn.algolia.com/api/v1/search?tags=front_page";
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data);
     this.setState({ content: data.hits });
   }
 

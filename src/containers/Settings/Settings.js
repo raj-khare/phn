@@ -12,22 +12,22 @@ export default class Settings extends React.Component {
 
   handleChange = e => {
     this.setState({ topics: e.target.value }, () => {
-      let topics = this.state.topics;
-      if (topics.charAt(0) === ",") {
-        topics = topics.slice(1);
-      }
-      if (topics.charAt(topics.length - 1) === ",") {
-        topics = topics.slice(0, topics.length - 1);
-      }
-      if (topics === "") {
-        this.props.updateTopics([]);
-        return;
-      }
-      const tArray = topics.split(", ");
-      tArray.forEach((el, i) => {
-        tArray[i] = el.trim();
-      });
-      this.props.updateTopics(tArray);
+      // let topics = this.state.topics;
+      // if (topics.charAt(0) === ",") {
+      //   topics = topics.slice(1);
+      // }
+      // if (topics.charAt(topics.length - 1) === ",") {
+      //   topics = topics.slice(0, topics.length - 1);
+      // }
+      // if (topics === "") {
+      //   this.props.updateTopics([]);
+      //   return;
+      // }
+      // const tArray = topics.split(", ");
+      // tArray.forEach((el, i) => {
+      //   tArray[i] = el.trim();
+      // });
+      this.props.updateTopics(this.state.topics);
     });
   };
 

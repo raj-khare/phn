@@ -10,7 +10,11 @@ export default class App extends React.Component {
   };
 
   updateTopics = topics => {
-    this.setState({ topics });
+    if (topics === "") {
+      this.setState({ topics: [] });
+      return;
+    }
+    this.setState({ topics: topics.split(",") });
   };
 
   render() {
