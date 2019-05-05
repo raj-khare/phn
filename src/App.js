@@ -18,8 +18,8 @@ export default class App extends React.Component {
       <div className="App">
         <Router>
           <header>
-            <strong>Personalized Hacker News &nbsp;&nbsp;</strong>
-            <Link to="/settings">Settings</Link>
+            <strong>Personalized Hacker News</strong>
+            <Link to="/settings">settings</Link>
           </header>
           <Route
             exact

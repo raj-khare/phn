@@ -4,16 +4,16 @@
 .App {
   width: 85vw;
   margin: 0.5rem auto;
-  font-size: 0.8rem;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
   background-color: rgb(246, 246, 239);
   padding-bottom: 4rem;
+  font-size: 1.33rem;
 }
 
 @media only screen and (max-width: 600px) {
   .App {
     width: 100vw;
     margin: 0;
+    font-size: 1.4rem;
   }
 }
 
@@ -33,31 +33,8 @@ header a {
   color: inherit;
 }
 
-.widget {
-  flex: 1;
-  flex-basis: 35rem;
-}
-
-.widget h1 {
-  font-weight: bold;
-  font-size: inherit;
-}
-
-.topic {
-  /* background-color: #ffb739; */
-  /* color: #fff; */
-  border-bottom: 1px solid #828282;
-  font-weight: bold;
-  padding: 0.2rem;
-  padding-left: 1rem;
-  text-transform: capitalize;
-}
-
-.content {
-  padding-top: 0.5rem;
-  overflow-y: scroll;
-  height: 30rem;
-  -webkit-overflow-scrolling: touch;
+header strong {
+  margin-right: 1rem;
 }
 
 ::-webkit-scrollbar {

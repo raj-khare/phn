@@ -1,0 +1,24 @@
+.widget {
+  flex: 1;
+  flex-basis: 35rem;
+}
+
+.widget h1 {
+  font-weight: bold;
+  font-size: inherit;
+}
+
+.topic {
+  background-color: #000;
+  color: #fff;
+  font-weight: bold;
+  padding: 0.3rem;
+  text-transform: capitalize;
+}
+
+.content {
+  padding-top: 1rem;
+  overflow-y: scroll;
+  height: 50rem;
+  -webkit-overflow-scrolling: touch;
+}

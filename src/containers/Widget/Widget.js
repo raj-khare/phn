@@ -1,5 +1,6 @@
 import React from "react";
 import Post from "../../components/Post/Post";
+import styles from "./Widget.module.css";
 
 export default class Widget extends React.Component {
   state = {
@@ -24,11 +25,13 @@ export default class Widget extends React.Component {
       posts.push(<Post post={el} key={i} n={i} />);
     });
     return (
-      <div className="widget">
-        <div className="topic">
+      <div className={styles.widget}>
+        <div className={styles.topic}>
           {this.props.topic ? this.props.topic : "Home"}
         </div>
-        <div className="content">{posts.length ? posts : "Loading..."}</div>
+        <div className={styles.content}>
+          {posts.length ? posts : "Loading..."}
+        </div>
       </div>
     );
   }
